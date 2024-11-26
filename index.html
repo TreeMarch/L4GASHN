@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tra cứu cây xăng</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <style>
+      #map {
+        height: 100vh   ;
+        margin: 20px 0;
+      }
+      .search-container {
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        width: 300px;
+        padding: 8px;
+      }
+      button {
+        padding: 8px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tra cứu cây xăng</h1>
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Nhập tên hoặc địa chỉ cây xăng"
+      />
+      <button id="searchButton">Tìm kiếm</button>
+    </div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      // Khởi tạo bản đồ
+      const map = L.map("map").setView([21.0285, 105.8542], 12); // Hà Nội
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+      }).addTo(map);
+
+      let markers = []; // Mảng lưu các marker
+
+      // Gọi API backend để lấy dữ liệu cây xăng
+      fetch("http://localhost:3000/api/gasstation") // Địa chỉ API từ backend
+        .then((response) => response.json())
+        .then((data) => {
+          // Lặp qua từng cây xăng và thêm marker lên bản đồ
+          data.forEach((station) => {
+            const marker = L.marker([
+              station.station_latitude,
+              station.station_longitude,
+            ]).addTo(map).bindPopup(`
+                            <strong>${station.station_name}</strong><br>
+                            Địa chỉ: ${station.station_address}<br>
+                            Thương hiệu: ${station.brand}<br>
+                            Giờ mở cửa: ${station.open_hours}<br>
+                            Liên hệ: ${station.contact_number}
+                        `);
+
+            // Lưu marker vào mảng
+            markers.push({
+              marker: marker,
+              data: station,
+            });
+          });
+        });
+
+      // Tìm kiếm cây xăng
+      document.getElementById("searchButton").addEventListener("click", () => {
+        const searchTerm = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+
+        // Duyệt qua danh sách marker và kiểm tra điều kiện tìm kiếm
+        markers.forEach(({ marker, data }) => {
+          const match =
+            data.station_name.toLowerCase().includes(searchTerm) ||
+            data.station_address.toLowerCase().includes(searchTerm);
+
+          if (match) {
+            // Hiển thị marker và mở popup nếu khớp
+            marker.openPopup();
+            map.setView(marker.getLatLng(), 15); // Phóng to vào vị trí
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
