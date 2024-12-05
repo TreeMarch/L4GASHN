@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sửa trạm xăng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <%- include('../partials/header') %>
+    <h1>Sửa trạm xăng</h1>
+    <form action="/edit/<%= station.station_id %>?_method=PUT" method="POST">
+      <input
+        type="text"
+        name="name"
+        value="<%= station.station_name %>"
+        required
+      />
+      <input
+        type="text"
+        name="address"
+        value="<%= station.station_address %>"
+        required
+      />
+      <input
+        type="text"
+        name="station_latitude"
+        value="<%= station.station_latitude %>"
+      />
+      <input
+        type="text"
+        name="station_longitude"
+        value="<%= station.station_longitude %>"
+      />
+      <input type="text" name="brand" value="<%= station.brand %>" />
+      <input type="text" name="open_hours" value="<%= station.open_hours %>" />
+      <input type="text" name="services" value="<%= station.services %>" />
+      <input
+        type="text"
+        name="contact_number"
+        value="<%= station.contact_number %>"
+      />
+      <input type="text" name="status" value="<%= station.status %>" />
+
+      <button type="submit">Cập nhật</button>
+    </form>
+  </body>
+</html>

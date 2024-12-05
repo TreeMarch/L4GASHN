@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Thêm trạm xăng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <%- include('../partials/header') %>
+    <h1>Thêm trạm xăng</h1>
+    <form action="/add" method="POST">
+      <input type="text" name="station_name" placeholder="Tên trạm" required />
+      <input
+        type="text"
+        name="station_address"
+        placeholder="Địa chỉ"
+        required
+      />
+      <input type="text" name="station_latitude" placeholder="Vĩ độ" required />
+      <input
+        type="text"
+        name="station_longitude"
+        placeholder="Kinh độ"
+        required
+      />
+      <input type="text" name="brand" placeholder="Thương hiêu" required />
+      <input type="text" name="open_hours" placeholder="Giờ mở cửa" required />
+      <input type="text" name="services" placeholder="Dịch vụ" required />
+      <input type="text" name="contact_number" placeholder="Liên hệ" required />
+      <input type="text" name="status" placeholder="Trạng thái" />
+      <button type="submit">Thêm</button>
+    </form>
+  </body>
+</html>

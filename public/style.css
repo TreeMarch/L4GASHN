@@ -1,0 +1,9 @@
+body {
+  font-family: Arial, sans-serif;
+}
+main {
+  min-height: calc(100vh - 64px - 64px); /* Trừ chiều cao header và footer */
+}
+table {
+  border-collapse: collapse;
+}

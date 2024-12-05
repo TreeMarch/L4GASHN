@@ -4,13 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tra cứu cây xăng</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
     <style>
       #map {
-        height: 100vh   ;
+        height: 100vh;
         margin: 20px 0;
       }
       .search-container {
@@ -46,7 +67,6 @@
       }).addTo(map);
 
       let markers = []; // Mảng lưu các marker
-
       // Gọi API backend để lấy dữ liệu cây xăng
       fetch("http://localhost:3000/api/gasstation") // Địa chỉ API từ backend
         .then((response) => response.json())
@@ -61,7 +81,7 @@
                             Địa chỉ: ${station.station_address}<br>
                             Thương hiệu: ${station.brand}<br>
                             Giờ mở cửa: ${station.open_hours}<br>
-                            Liên hệ: ${station.contact_number}
+                            Dịch vụ: ${station.services}
                         `);
 
             // Lưu marker vào mảng
@@ -83,6 +103,8 @@
           const match =
             data.station_name.toLowerCase().includes(searchTerm) ||
             data.station_address.toLowerCase().includes(searchTerm);
+          data.brand.toLowerCase().includes(searchTerm);
+          data.services.toLowerCase().includes(searchTerm);
 
           if (match) {
             // Hiển thị marker và mở popup nếu khớp
