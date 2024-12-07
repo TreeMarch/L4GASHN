@@ -4,61 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fuel Station Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css"
+    />
     <link rel="stylesheet" href="../public/style.css" />
-    <!-- Đường dẫn CSS -->
+    <!-- Đường dẫn CSS  tailwincss-->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Hoặc thêm Tailwind CDN -->
   </head>
   <body class="bg-gray-100 flex">
     <%- include('../partials/sidebar.ejs') %>
     <div class="flex-1 ml-64">
       <%- include('../partials/header.ejs') %>
       <main class="p-6">
+        <%- include('flash-message') %>
         <h2 class="text-xl font-bold mb-4">Danh sách cây xăng</h2>
         <table
+          id="usersTable"
           class="table-auto w-full bg-white border border-gray-300 rounded-md shadow-md"
         >
           <thead class="bg-gray-200 text-left">
             <tr>
-              <th class="p-2 border">#</th>
+              <!-- <th class="p-2 border">#</th> -->
               <th class="p-2 border">Tên cây xăng</th>
               <th class="p-2 border">Địa chỉ</th>
               <th class="p-2 border">Thương Hiệu</th>
-              <th class="p-2 border">Loại nhiên liệu</th>
+              <th class="p-2 border">Các loại xăng</th>
+              <th class="p-2 border">Các loại dầu</th>
+              <th class="p-2 border">Dịch vụ</th>
               <th class="p-2 border">Thời gian</th>
-              <th class="p-2 border">Trạng thái</th>
+              <!-- <th class="p-2 border">Trạng thái</th> -->
               <th class="p-2 border">Hành động</th>
             </tr>
           </thead>
           <tbody>
             <% gasStations.forEach((station, index) => { %>
             <tr class="<%= index % 2 === 0 ? 'bg-gray-50' : 'bg-white' %>">
-              <td class="p-2 border"><%= index + 1 %></td>
+              <!-- <td class="p-2 border"><%= index + 1 %></td> -->
               <td class="p-2 border"><%= station.station_name %></td>
               <td class="p-2 border"><%= station.station_address %></td>
               <td class="p-2 border"><%= station.brand %></td>
+              <td class="p-2 border"><%= station.types_of_gasoline %></td>
+              <td class="p-2 border"><%= station.oils %></td>
               <td class="p-2 border"><%= station.services %></td>
               <td class="p-2 border"><%= station.open_hours %></td>
-              <td class="p-2 border"><%= station.status %></td>
+              <!-- <td class="p-2 border"><%= station.status %></td> -->
               <td class="p-2 border text-center">
                 <a
                   href="/detail/<%= station.station_id %>"
                   class="text-green-500 hover:underline"
                   ><i class="fa-solid fa-eye"></i
                 ></a>
-                |
+
                 <a
                   href="/edit/<%= station.station_id %>?_method=PUT"
                   class="text-blue-500 hover:underline"
                   ><i class="fa-solid fa-wrench"></i
                 ></a>
-                |
+
                 <form
+                  onsubmit="return confirmDelete()"
                   action="/delete/<%= station.station_id %>?_method=DELETE"
                   method="POST"
                   style="display: inline"
                 >
-                  <button type="submit" class="text-red-500 hover:underline">
+                  <button
+                    id="deleteButton"
+                    type="submit"
+                    class="text-red-500 hover:underline"
+                  >
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </form>
@@ -69,5 +88,21 @@
         </table>
       </main>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#usersTable").DataTable();
+      });
+    </script>
+
+    <script>
+      function confirmDelete() {
+        return confirm("Bạn chắc chắn muốn xóa đối tượng này?");
+      }
+    </script>
   </body>
 </html>

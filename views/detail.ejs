@@ -25,17 +25,44 @@
         <p><strong>Vĩ độ:</strong> <%= station.station_latitude %></p>
         <p><strong>Kinh độ:</strong> <%= station.station_longitude %></p>
         <p><strong>Thương hiệu:</strong> <%= station.brand %></p>
+        <p><strong>Các loại xăng:</strong> <%= station.types_of_gasoline %></p>
+        <p><strong>Các loại dầu:</strong> <%= station.oils %></p>
         <p><strong>Thời gian:</strong> <%= station.open_hours %></p>
         <p><strong>Dịch vụ:</strong> <%= station.services %></p>
         <p><strong>Liên hệ:</strong> <%= station.contact_number %></p>
         <p><strong>Trạng thái:</strong> <%= station.status %></p>
       </div>
-      <a href="/" class="text-blue-500 hover:underline">Quay lại danh sách</a>
+      <a
+        href="/"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >Quay lại danh sách</a
+      >
+
       <a
         href="/edit/<%= station.station_id %>?_method=PUT"
-        class="text-green-500 hover:underline"
+        class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         >Chỉnh sửa</a
       >
+
+      <form
+        onsubmit="return confirmDelete()"
+        action="/delete/<%= station.station_id %>?_method=DELETE"
+        method="POST"
+        style="display: inline"
+      >
+        <button
+          id="deleteButton"
+          type="submit"
+          class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+        >
+          Xoá
+        </button>
+      </form>
     </main>
   </body>
+  <script>
+    function confirmDelete() {
+      return confirm("Bạn chắc chắn muốn xóa đối tượng này?");
+    }
+  </script>
 </html>

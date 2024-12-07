@@ -4,43 +4,157 @@
     <title>Sửa trạm xăng</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-white-100">
     <%- include('../partials/header') %>
-    <h1>Sửa trạm xăng</h1>
-    <form action="/edit/<%= station.station_id %>?_method=PUT" method="POST">
-      <input
-        type="text"
-        name="name"
-        value="<%= station.station_name %>"
-        required
-      />
-      <input
-        type="text"
-        name="address"
-        value="<%= station.station_address %>"
-        required
-      />
-      <input
-        type="text"
-        name="station_latitude"
-        value="<%= station.station_latitude %>"
-      />
-      <input
-        type="text"
-        name="station_longitude"
-        value="<%= station.station_longitude %>"
-      />
-      <input type="text" name="brand" value="<%= station.brand %>" />
-      <input type="text" name="open_hours" value="<%= station.open_hours %>" />
-      <input type="text" name="services" value="<%= station.services %>" />
-      <input
-        type="text"
-        name="contact_number"
-        value="<%= station.contact_number %>"
-      />
-      <input type="text" name="status" value="<%= station.status %>" />
+    <main class="p-6">
+      <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <form
+          action="/edit/<%= station.station_id %>?_method=PUT"
+          method="POST"
+        >
+          <label
+            for="station_name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Station name</label
+          >
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="text"
+            name="name"
+            value="<%= station.station_name %>"
+            required
+          />
+          <!-- ============= -->
+          <label
+            for="station_address"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >station_address</label
+          >
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="text"
+            name="address"
+            value="<%= station.station_address %>"
+            required
+          />
+          <!-- ============= -->
+          <label
+            for="station_latitude"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Vĩ độ</label
+          >
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="text"
+            name="station_latitude"
+            value="<%= station.station_latitude %>"
+          />
+          <!-- ============= -->
+          <label
+            for="station_latitude"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Kinh độ</label
+          >
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="text"
+            name="station_longitude"
+            value="<%= station.station_longitude %>"
+          />
+          <!-- ============= -->
+          <label
+            for="brand"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Thương hiệu</label
+          >
+          <input
+            type="text"
+            name="brand"
+            value="<%= station.brand %>"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          <!-- ============= -->
+          <label
+            for="types_of_gasoline"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Loại nhiên liệu</label
+          >
+          <input
+            type="text"
+            name="types_of_gasoline"
+            value="<%= station.types_of_gasoline %>"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          <!-- ============= -->
+          <label
+            for="oils"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Nhiên liệu</label
+          >
+          <input
+            type="text"
+            name="oils"
+            value="<%= station.oils %>"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          <!-- ============= -->
+          <label
+            for="open_hours"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Thời gian</label
+          >
+          <input
+            type="text"
+            name="open_hours"
+            value="<%= station.open_hours %>"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          <!-- ============= -->
+          <label
+            for="services"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Dịch vụ</label
+          >
+          <input
+            type="text"
+            name="services"
+            value="<%= station.services %>"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          <!-- ============= -->
+          <label
+            for="contact_number"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Số điện thoại</label
+          >
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="text"
+            name="contact_number"
+            value="<%= station.contact_number %>"
+          />
+          <!-- ============= -->
+          <label
+            for="status"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Trạng thái</label
+          >
+          <input
+            type="text"
+            name="status"
+            value="<%= station.status %>"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          <!-- ============= -->
 
-      <button type="submit">Cập nhật</button>
-    </form>
+          <button
+            type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4"
+          >
+            Cập nhật
+          </button>
+        </form>
+      </div>
+    </main>
   </body>
 </html>

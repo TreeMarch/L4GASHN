@@ -4,30 +4,180 @@
     <title>Thêm trạm xăng</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-white-100">
     <%- include('../partials/header') %>
-    <h1>Thêm trạm xăng</h1>
-    <form action="/add" method="POST">
-      <input type="text" name="station_name" placeholder="Tên trạm" required />
-      <input
-        type="text"
-        name="station_address"
-        placeholder="Địa chỉ"
-        required
-      />
-      <input type="text" name="station_latitude" placeholder="Vĩ độ" required />
-      <input
-        type="text"
-        name="station_longitude"
-        placeholder="Kinh độ"
-        required
-      />
-      <input type="text" name="brand" placeholder="Thương hiêu" required />
-      <input type="text" name="open_hours" placeholder="Giờ mở cửa" required />
-      <input type="text" name="services" placeholder="Dịch vụ" required />
-      <input type="text" name="contact_number" placeholder="Liên hệ" required />
-      <input type="text" name="status" placeholder="Trạng thái" />
-      <button type="submit">Thêm</button>
-    </form>
+    <main class="p-6">
+      <form action="/add" method="POST">
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+          <div>
+            <label
+              for="station_name"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Tên trạm xăng</label
+            >
+            <input
+              name="station_name"
+              type="text"
+              id="station_name"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="station_address"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Địa chỉ</label
+            >
+            <input
+              name="station_address"
+              type="text"
+              id="station_address"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="station_latitude"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Vĩ độ</label
+            >
+            <input
+              name="station_latitude"
+              type="text"
+              id="station_latitude"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="station_longitude"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Kinh độ</label
+            >
+            <input
+              name="station_longitude"
+              type="text"
+              id="phone"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="brand"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Thương hiệu</label
+            >
+            <input
+              name="brand"
+              type="text"
+              id="brand"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label
+              for="types_of_gasoline"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Các loại xăng</label
+            >
+            <input
+              name="types_of_gasoline"
+              type="text"
+              id="brand"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label
+              for="brand"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Các loại dầu</label
+            >
+            <input
+              name="oils"
+              type="text"
+              id="brand"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label
+              for="open_hours"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Thời gian</label
+            >
+            <input
+              name="open_hours"
+              type="text"
+              id="open_hours"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder=""
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="services"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Dịch vụ</label
+            >
+            <input
+              name="services"
+              type="text"
+              id="services"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder=""
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="contact_number"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Số điện thoại</label
+            >
+            <input
+              name="contact_number"
+              type="text"
+              id="contact_number"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder=""
+              required
+            />
+          </div>
+        </div>
+        <div class="mb-6">
+          <label
+            for="status"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Trạng thái</label
+          >
+          <input
+            name="status"
+            type="text"
+            id="status"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            
+          />
+        </div>
+        </div>
+        <button
+          type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Submit
+        </button>
+      </form>
+    </main>
   </body>
 </html>
